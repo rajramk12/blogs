@@ -1,0 +1,11 @@
+<div class="container">
+<%= render 'shared/pagetitle', pageTitle:'All Thoughts'%>
+<div align="center">
+<%= will_paginate %>
+</div>
+<%= render 'listings', obj: @recipes  %>
+</div>
+<div align="center">
+<%= will_paginate %>
+</div>
+

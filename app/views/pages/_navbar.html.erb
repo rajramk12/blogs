@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+       <%= link_to "R-R Blogs", root_path, class:"navbar-brand", id:"logo"%>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to "All Users", chefs_path%></span></li>
+        <li><%= link_to "All Blogs", recipes_path %></li>
+       <% if logged_in? %>
+        <li><%= link_to "Create New", new_recipe_path %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+       <% unless logged_in? %>
+          <li><%= link_to "Sign In", login_path %></li>
+        <% else %>
+        <% if current_user.admin? %>
+<li><%= link_to "Super User Account" , chef_path(current_user)%></li>
+<%else%>
+           <li><%= link_to "#{current_user.chefname.capitalize}'s Account" , chef_path(current_user)%></li>
+           <%end%>
+           <li role='separator' class="divider"></li>
+           <li><%= link_to "Edit Account", edit_chef_path(current_user)%></li>
+           <li role='separator' class="divider"></li>
+           <li><%= button_to "Sign Out", logout_path, method: :delete, class:'lo btn btn-danger'%></li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

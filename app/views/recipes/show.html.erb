@@ -1,0 +1,24 @@
+<div class="well container">
+  <%= render 'shared/pagetitle', pageTitle: @recipe.name.capitalize %></h1>
+  <div class="well row">
+    <div class="col-md-10 col-md-offset-2">
+     <h3 class="center description"><strong> Steps </strong></h3>
+      <hr/>
+      <p> <%= simple_format(@recipe.description) %> </p>
+    </div>
+  </div>
+  <div class="row buttons">
+    <div class="recipe-actions col-md-10-offset-1">
+      <p class="center">
+        <%= link_to gravatar_for(@recipe.chef, size: 120) ,chef_path(@recipe.chef)%><br/>
+        <small align="center"> <%= @recipe.chef.chefname%> <br/>Created : <%= time_ago_in_words(@recipe.created_at)  %> Ago </small><br/>
+        <% if logged_in? && ( current_user == @recipe.chef || current_user.admin? ) %>
+          <div class="row recipe-actions buttons">
+              <%= link_to   "Edit Thought" ,edit_recipe_path(@recipe), class:"btn btn-warning buttons"%>
+              <%= link_to   "Destroy", recipe_path(@recipe), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-danger buttons" %>
+          </div>
+        <% end %>
+      </p>
+    </div>
+   </div>
+</div>
