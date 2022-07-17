@@ -1,4 +1,4 @@
-<% if flash.empty? == false %>
+<% if !flash.empty? %>
   <div class="col col-md10 col-offset-1">
     <% flash.each do |name,msg|%>
       <div class="alert alert-<%=name%> alert-dismissible" >
